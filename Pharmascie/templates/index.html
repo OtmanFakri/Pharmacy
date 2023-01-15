@@ -1,0 +1,132 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+  <meta charset="UTF-8">
+  <title>CodePen - Prefill Address Form with Geolocation and Google Maps</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.min.css">
+  
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"><link rel="stylesheet" href="{% static 'assets/css/style.css' %}">
+
+</head>
+<body>
+<!-- partial:index.partial.html -->
+
+
+<div class="container">
+
+ 
+  {% if messages %}
+  <ul class="messages">
+      {% for message in messages %}      
+      <div class="alert alert-success alert-dismissible fade show messages {% if message.tags %} class=" {{ message.tags }} " {% endif %}" role="alert">
+        <strong> {{ message }}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      {% endfor %}
+  {% endif %}
+  <h4>Pharmacy Address</h4>
+
+  <p>You can click the button below to use your current location as your shipping address</p>
+
+  <div id="map">
+  </div>
+
+  
+
+  <button id="showMe" class="btn center-align">
+    <i class="material-icons">
+        my_location
+    </i>
+    Use My Location
+  </button>
+
+  <form id="billingAddress" method='POST'>
+    {% csrf_token %}
+
+    
+    <div id="alert-container"></div>
+
+    <div id="locationList"></div>
+    <br>
+
+    <div class="input-field">
+      <textarea required class="materialize-textarea" name="address" id="address" type="text"></textarea>
+      <label class="active" for="address">Address (Area and Street)</label>
+    </div>
+
+    <div class="input-field">
+      <input required id="locality" name="locality" type="text">
+      <label class="active" for="locality">Locality</label>
+    </div>
+
+    <div class="input-field">
+      <input required id="nom_Pharmacie" name="nom_Pharmacie" type="text">
+      <label class="active" for="locality">nom Pharmacie</label>
+    </div>
+
+
+
+    <div class="input-field">
+      <input required id="position_lng" name="position_lng" type="text">
+      <label class="active" for="position_lng">position_lng</label>
+    </div>
+
+    <div class="input-field">
+      <input required id="position_lat" name="position_lat" type="text">
+      <label class="active" for="position_lat">position_lat</label>
+    </div>
+
+    <div class="input-field">
+      <input required id="city" name="city" type="text">
+      <label class="active" for="city">City/District/Town</label>
+    </div>
+    <div class="input-field">
+      <input required id="postal_code" name="postal_code" type="text">
+      <label class="active" for="pin_code">Pin Code</label>
+    </div>
+
+    <div class="input-field">
+      <input required name="NumberPhone" id="NumberPhone" type="tel">
+      <label class="active" for="landmark">Number Phone</label>
+    </div>
+
+    <div class="input-field">
+      <input required id="state" name="state" type="text">
+      <label class="active" for="State">State</label>
+    </div>
+
+    <button class="continue-application">
+      <div>
+          <div class="pencil"></div>
+          <div class="folder">
+              <div class="top">
+                  <svg viewBox="0 0 24 27">
+                      <path d="M1,0 L23,0 C23.5522847,-1.01453063e-16 24,0.44771525 24,1 L24,8.17157288 C24,8.70200585 23.7892863,9.21071368 23.4142136,9.58578644 L20.5857864,12.4142136 C20.2107137,12.7892863 20,13.2979941 20,13.8284271 L20,26 C20,26.5522847 19.5522847,27 19,27 L1,27 C0.44771525,27 6.76353751e-17,26.5522847 0,26 L0,1 C-6.76353751e-17,0.44771525 0.44771525,1.01453063e-16 1,0 Z"></path>
+                  </svg>
+              </div>
+              <div class="paper"></div>
+          </div>
+      </div>
+      Continue Application
+  </button>
+  </form>
+
+</div>
+<!-- partial -->
+  <script src='https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0-beta/js/materialize.min.js'></script>
+<script src='https://maps.googleapis.com/maps/api/js?key=AIzaSyBwaHyIsDZrPQVS2OTSks-s4sAsnvLu8tM'></script><script  src="{% static 'assets/js/script.js' %}"></script>
+
+<script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+
+</script>
+
+</body>
+</html>

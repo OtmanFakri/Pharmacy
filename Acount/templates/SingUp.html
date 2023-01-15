@@ -1,0 +1,60 @@
+{% extends "Base.html" %}
+
+{% block Base %}
+{% load crispy_forms_tags %}
+
+<div class="d-flex align-items-center" style="height: 100vh;">
+<div class="card mx-auto " style="width: 30rem;">
+  <div class="card-body ">
+
+    <form method="post">
+      {% csrf_token %}
+    
+        {{error}}
+    
+      <div class="form-row ">
+        <div class="form-group col-md-6">
+          {{ form.Real_name|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ form.Email|as_crispy_field }}
+        </div>
+      </div>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          {{ form.Password|as_crispy_field }}
+        </div>
+        <div class="form-group col-md-6">
+          {{ form.confirm_password|as_crispy_field }}
+        </div>
+      </div>
+      <div class="form-row">
+
+        <div class="form-group col-md-6 ">
+          <div class="form-check form-check-inline">
+            {{ form.Type_counte|as_crispy_field }}
+          </div>
+          
+        </div>
+      </div>
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+    <br>
+    <a href=#>Login</a>
+  </div>
+</div>
+
+
+
+
+<!--
+<form method="post">
+  {% csrf_token %}
+  {% if error != null %}
+    {{error}}
+  {% endif %}
+  {{ form.as_p }}
+  <button type="submit">Sign Up</button>
+</form>
+-->
+{% endblock Base %}
